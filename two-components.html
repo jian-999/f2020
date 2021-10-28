@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="description" content="vuex"> 
+     <title>vuex</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuex"></script>
+</head>
+<body>
+       <div id="app">
+                   <counter1></counter1>
+                   <counter2></counter2>
+       </div>
+       <template id="counter1">
+                  <div style="position: absolute;top:3rem;left:3rem; ">
+                         <input type="text"  :placeholder="result">
+                         <input type="button"  @click="increment(5)" value="+5">
+                  </div>
+       </template>
+         <template id="counter2" >
+                  <div style="position: absolute;top:7rem;left:3rem; ">
+                         <input type="text"  :placeholder="result">      
+                  </div>
+       </template>
+       <script>
+                    Vue.component("counter1",{
+                      computed:{
+                              result(){
+                               return this.$store.getters.counter
+                                       }
+                      },
+                      methods:{
+                                 increment(step){
+                                     this.$store.commit('increment',step)
+                                                 }
+                               },
+                     template:"#counter1"
+                   }
+                    )
+
+                       Vue.component("counter2",{
+                      computed:{
+                              result(){
+                              return  this.$store.getters.counter
+                                       }
+                      },
+                      template:"#counter2"
+                   }
+                    )
+
+                   const store=new Vuex.Store({
+                                      state:{counter:0},
+                                      getters:{        
+                                                counter(state){
+                                                  return state.counter
+                                                }
+                                        },
+                                       mutations:{
+                                                 increment(state,payload){
+                                                  state.counter+=payload
+                                                 }
+                                       } 
+                   })    
+                   new Vue({
+                             el:"#app",
+                             store
+                        })
+
+       </script>
+        
+</body>
+</html>

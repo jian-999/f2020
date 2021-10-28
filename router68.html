@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vue的路由功能</title>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="description" content="Router">  
+   <link rel="stylesheet" type="text/css" href="css/reset.css">
+   <link rel="stylesheet" type="text/css" href="css/router68.css">
+    <script src="js/jquery-3.4.0.min.js"></script>
+    <script  type="text/javascript" src="js/nav.js"></script>
+     <script  type="text/javascript" src="js/animation.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.0.1/vuex.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/3.0.1/vue-router.js"></script>
+    <script src="https://unpkg.com/vue-firestore"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase.js"></script>
+
+   
+</head>
+<body>
+     <div id="app">
+             <div id="logo">Logo</div>
+             <div id="title-web">Router</div>
+              <input type="checkbox" id="checkbox-nav">
+           <label for="checkbox-nav" id="nav-btn">  <img src="images/icon-nav.png"></label>
+             <nav id="nav">
+               <div id="title-nav">
+                    <div>
+                          <router-link to="/home" class="ro">首頁</router-link>
+                          <div class="corner1"></div>
+                          <div class="corner2"></div>
+                          <div class="corner3"></div>
+                          <div class="corner4"></div>
+                    </div>
+                    <div>
+                          <router-link to="/section1" class="ro">內容1</router-link>
+                            <div class="corner1s"></div>
+                          <div class="corner2s"></div>
+                          <div class="corner3s"></div>
+                          <div class="corner4s"></div>
+                    </div>
+                    <div>
+                          <router-link to="/section2" class="ro">內容2</router-link>
+                            <div class="corner1s"></div>
+                          <div class="corner2s"></div>
+                          <div class="corner3s"></div>
+                          <div class="corner4s"></div>
+                    </div>
+                    <div>
+                          <router-link to="/section5" class="ro">內容3</router-link>
+                            <div class="corner1s"></div>
+                          <div class="corner2s"></div>
+                          <div class="corner3s"></div>
+                          <div class="corner4s"></div>
+                    </div>
+                    <div>
+                          <router-link to="/section3" class="ro">內容4</router-link>
+                            <div class="corner1s"></div>
+                          <div class="corner2s"></div>
+                          <div class="corner3s"></div>
+                          <div class="corner4s"></div>
+                    </div>
+                     <div>
+                          <router-link to="/section4" class="ro">內容5</router-link>
+                            <div class="corner1s"></div>
+                          <div class="corner2s"></div>
+                          <div class="corner3s"></div>
+                          <div class="corner4s"></div>
+                    </div>
+               </div>
+                <div id="icon-nav">
+                    <div>
+                      <a href="mailto:aaa.ccc@gmail.com?" target="_blank"><img src="images/icon-gmail.png"></a>
+                          <div class="corner1-icon"></div>
+                          <div class="corner2-icon"></div>
+                          <div class="corner3-icon"></div>
+                          <div class="corner4-icon"></div>
+                    </div>
+                     <div>
+                      <a href="http://at.line.me/tw/" target="_blank"><img src="images/icon-line.png"></a>
+                         <div class="corner1-icon"></div>
+                          <div class="corner2-icon"></div>
+                          <div class="corner3-icon"></div>
+                          <div class="corner4-icon"></div>
+                    </div>
+                      <div>
+                  <a href="https://developers.facebook.com/docs/plugins/" target="_blank"><img src="images/icon-facebook.png"></a>
+                           <div class="corner1-icon"></div>
+                          <div class="corner2-icon"></div>
+                          <div class="corner3-icon"></div>
+                          <div class="corner4-icon"></div></div>
+                 
+               </div>
+             </nav>
+             <main>
+                    <router-view></router-view>
+                     <router-view name="part1"></router-view>
+                      <router-view name="part2"></router-view>
+             </main>
+
+     </div>
+     <script>
+          const home={template:`<div id="index"><a href="#">回首頁</a></div>`}
+        
+          const sec1={template:`<div id="sec1">                                   
+                                        <h3>城市</h3> 
+                                        <div id="sec12">
+                                     <p>在夜晚下,有著高樓大廈林立的景象,閃閃發亮的燈光,印襯了這是一座相當繁榮的城市,</p>
+                                     <hr></hr>
+                                     <p>這座城市,鄰近海邊,並且有建設大橋用來連結海的另一邊土地!</p>
+                                     </div>
+                                     <div id="sec13">
+                                     <a href="#">相關連結</a>
+                                     </div>                                 
+                                     </div>`}
+          const secPart1={template:`<div id="secPart1">
+                                      <div><img src="images/城市(640-427).jpg"></div>
+                                     </div>`}
+         const secPart2={template:`<div></div>`}
+
+         const sec2={template:`<div id="sec2">
+                                      <div>
+                                           <div><img src="images/海邊(640-427).jpg"></div>
+                                           <h3>海邊</h3>
+                                           <hr></hr>
+                                           <p>2020年</p>
+                                      </div>
+                                       <div>
+                                           <div><img src="images/雙蝴蝶(640-427).jpg"></div>
+                                           <h3>雙蝴蝶</h3>
+                                           <hr></hr>
+                                           <p>2020年</p>
+                                      </div>
+                                          <div>
+                                           <div><img src="images/森林(640-435).jpg"></div>
+                                           <h3>森林</h3>
+                                           <hr></hr>
+                                           <p>2020年</p>
+                                      </div>
+                                          <div>
+                                           <div><img src="images/紫色夜晚(640-427).jpg"></div>
+                                           <h3>紫色夜晚</h3>
+                                           <hr></hr>
+                                           <p>2020年</p>
+                                      </div>
+                                         </div>`}
+         const sec2Part1={template:`<div id="sec2Part1">
+                                        </div>`}
+        const sec2Part2={template:`<div></div>`}
+
+         const sec3={template:`<div id="sec3">
+                                 <div>
+                                     <form id="form">
+                                       <div> <input type="date" name="date"></div>
+                                       <div><label for="name">請輸入你的名字:</label><input type="text" name="name" id="name"></div>
+                                       <div><label for="email">請輸入你的email:</label><input type="email" name="email" id="email"></div>
+                                       <div><label for="message">請輸入你的訊息:</label><textarea id="message"></textarea></div>
+                                     </form>
+                                      <div>請輸入此表單</div>
+                                 </div>
+                                  
+                            </div>`}
+
+         const sec3Part1={template:`<div id="sec3Part1">
+                                            <h3>網頁優化</h3>
+                                            <p>這是一個用基本的網頁前端程式所做出來的網頁介面, 並且使用一些seo的規範來製作, 此網頁會安裝上Google Search Console,來確保有被搜尋引擎索引和檢索等, 和安裝Google Analytics的追蹤碼,來了解流量等的資料!並且用Google Ads來查詢關鍵字的狀況!</p>
+                                        </div>`}
+
+        const sec3Part2={template:`<div></div>`}
+
+
+         const sec4={template:`<div id="sec4">
+                                 <h3>主要網頁<div>2020年</div></h3>
+                                 <form id="form2">
+                                    <label for="email2">請輸入你的email:</label>
+                                    <div><input type="email" name="email2"></div>
+                                 </form>
+                                 <div><a href="#">超連結</a></div>
+                                 <div id="icon-nav2">
+                                     <div>
+                                     <a href="mailto:aaa.ccc@gmail.com?" target="_blank"><img src="images/icon-gmail.png"></a>
+                                        <div class="corner1-icon2"></div>
+                                        <div class="corner2-icon2"></div>
+                                        <div class="corner3-icon2"></div>
+                                        <div class="corner4-icon2"></div>
+                                     </div>
+                                     <div>
+                                        <a href="http://at.line.me/tw/" target="_blank"><img src="images/icon-line.png"></a>
+                                        <div class="corner1-icon2"></div>
+                                        <div class="corner2-icon2"></div>
+                                        <div class="corner3-icon2"></div>
+                                        <div class="corner4-icon2"></div>
+                                    </div>
+                                     <div>
+                                     <a href="https://developers.facebook.com/docs/plugins/" target="_blank"><img src="images/icon-facebook.png"></a>
+                                       <div class="corner1-icon2"></div>
+                                        <div class="corner2-icon2"></div>
+                                        <div class="corner3-icon2"></div>
+                                        <div class="corner4-icon2"></div>
+                                     </div>
+                                 </div>
+                            </div>`}
+
+         const sec4Part1={template:`<div id="sec4Part1">                          
+                                        </div>`}
+        const sec4Part2={template:`<div></div>`}
+
+         const sec5={template:`<div id="sec5">
+                                 <h3>日記</h3>
+                                 <div>
+                                     <div>
+                                       <span>2020/5/10<a href="#">連結</a></span>
+                                       <h3>日記-1</h3>
+                                       <p>這天是星期天</p>
+                                       <hr></hr>
+                                       <span><img src="images/星座時鐘(640-427).jpg"></span>
+                                       <div>CHIEN-CHI</div>
+                                     </div>
+                                      <div>
+                                       <span>2020/5/11<a href="#">連結</a></span>
+                                       <h3>日記-2</h3>
+                                       <p>氣候感覺很炎熱</p>
+                                       <hr></hr>
+                                       <span><img src="images/星座時鐘(640-427).jpg"></span>
+                                       <div>CHIEN-CHI</div>
+                                     </div>
+                                      <div>
+                                       <span>2020/5/12<a href="#">連結</a></span>
+                                       <h3>日記-3</h3>
+                                       <p>今天早上下著大雨,雨勢非常的大,不過到了晚上氣候相當的炎熱!</p>
+                                       <hr></hr>
+                                       <span><img src="images/星座時鐘(640-427).jpg"></span>
+                                       <div>CHIEN-CHI</div>
+                                     </div>
+                                 </div>
+                               </div>`}
+
+         const sec5Part1={template:`<div id="sec5Part1">
+
+                                        </div>`}
+        const sec5Part2={template:`<div></div>`}
+
+   var router=new VueRouter({
+          routes:[
+                  {path:"/home",redirect:"/direction"},
+                  {path:"/direction",component:home},
+                  {path:"/section1",components:{default:sec1,
+                                                part1:secPart1,
+                                                part2:secPart2}},
+                  {path:"/section2",components:{default:sec2,
+                                                part1:sec2Part1,
+                                                part2:sec2Part2}},
+                  {path:"/section3",components:{default:sec3,
+                                                part1:sec3Part1,
+                                                part2:sec3Part2}},
+                  {path:"/section4",components:{default:sec4,
+                                                part1:sec4Part1,
+                                                part2:sec4Part2}},
+                {path:"/section5",components:{default:sec5,
+                                                part1:sec5Part1,
+                                                part2:sec5Part2}}     
+          ]
+   })
+          new Vue({
+                    el:"#app",
+                    router
+          })
+       
+     </script>
+</body>
+</html>

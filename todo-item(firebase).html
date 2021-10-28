@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+   <meta name="Vue-firebase" content="Router"> 
+  <title>Vue-firebase</title>
+ <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <script src="js/jquery-3.4.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+   <script src="https://unpkg.com/vue-firestore"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase.js"></script>
+</head>
+<body>
+          <div id="app">
+                     <h1 style="font-weight:bolder;">加入待辦清單到firebase</h1>
+                   <div>
+                       <div>名稱:<input v-model="newNote.name"></div>
+                       <div class="my-3">內容:<input v-model="newNote.content"></div>
+                        <div><button type="button" class="btn btn-primary" @click="addNote">加入清單</button></div>
+                   </div>
+                   <table  class="table m-4">
+                       <thead>
+                           <tr>
+                              <th>名稱</th><th>內容</th><th>刪除</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr v-for="note of notes" :key="note['.key']">
+                               <td>{{note.name}}</td>
+                               <td>{{note.content}}</td>
+                                <td><button class="btn btn-info" @click="deleteNote(note['.key'])">刪除</button></td>
+                           </tr>
+                       </tbody>
+                   </table>
+
+          </div> 
+          <script type="text/javascript">
+        var firebaseConfig = {
+                              apiKey: "AIzaSyBetvJ7Y4tSXw2sHXckbbdQj_xLihOHWCI",
+                              authDomain: "notestest-7c84c.firebaseapp.com",
+                              databaseURL: "https://notestest-7c84c.firebaseio.com",
+                              projectId: "notestest-7c84c",
+                              storageBucket: "notestest-7c84c.appspot.com",
+                              messagingSenderId: "346501940369",
+                              appId: "1:346501940369:web:4202c40169a1e9fe1a6b30",
+                             measurementId: "G-L538KY8Z2T"
+                         };
+                 let db=firebase.initializeApp(firebaseConfig).firestore()
+
+                 new Vue({
+                          el:'#app',
+                          data:{
+                                newNote:{
+                                    name:'',
+                                    content:''
+                                }
+                          },
+                          firestore(){
+                              return{notes:db.collection("notes").orderBy('created')}
+                          },
+                          methods:{
+
+                              addNote(){
+
+                                db.collection("notes").add({
+                                    name:this.newNote.name,
+                                    content:this.newNote.content,
+                                    created:new Date()
+                                }).then(ref=>{
+
+                                    this.newNote.name=""
+                                    this.newNote.content=""
+                                   this.newNote.created=null
+                                }).catch(error=>{
+
+                                 console("錯誤:",error)
+                                    }
+                                )
+                              },deleteNote(key){
+
+                                db.collection("notes").doc(key).delete().catch(error=>{
+
+                                 console("錯誤:",error)
+                                    })
+                              }
+                          }
+
+
+
+
+                 })
+          </script>
+           
+</body>
+</html>

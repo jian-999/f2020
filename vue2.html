@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  <meta name="description" content="加入待辦清單"> 
+   <title>加入待辦清單</title>
+	<script src="js/jquery-3.4.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+            <div id="root">
+                     <input v-model="work">
+                     <button @click="Submit">加入待辦清單</button>
+                     <div>{{work}}</div>
+                     <ul>
+                     	 <todo-item
+                          v-for='(item,index) of list'
+                          :key="index"
+                          :content="item"
+                          :index="index"
+                          @delete="Delete"
+                     	 >
+                     	 </todo-item>
+                     </ul>
+
+
+            </div>
+            <script>
+  
+                      Vue.component('todo-item',{
+                        props:['content','index'],
+                        template:'<li @click="toparent">{{content}}<button>刪除</button></li>',
+                        methods:{
+                                     toparent:function(){
+                                  	this.$emit("delete",this.index);
+                                  }
+                        }                               
+                      })
+
+                           new Vue({
+                                        el:"#root",
+                                        data:{
+                                        	work:'',
+                                        	list:[]
+                                        },
+                                        methods:{
+                                        	Submit:function(){
+                                        		this.list.push(this.work);
+                                        		this.work='';
+                                        	},
+                                        	Delete:function(index){
+                                        		this.list.splice(index,1);
+                                        	}
+                                        }
+                           })
+
+            </script>
+</body>
+</html>
