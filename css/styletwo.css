@@ -48,7 +48,7 @@ input[id=btnnav]{opacity: 0;}
 .ph-sub{position:absolute;left:-1000%;}
 .ph-sub>h3+div{display: none;}
 .ph-sub>h3+div a{text-decoration: none;padding: 0.3rem 0;display: block;}
- #nav>section:nth-child(1)>section:nth-child(2) .pc-sub{width:472%;left:-325%; }
+ #nav>section:nth-child(1)>section:nth-child(2) .pc-sub{width:100%;left:0%; }
 
 .pc-sub{opacity: 0.5;position: absolute;top:7.5rem;background-color:lightblue;width:100%;border-bottom:3px solid green;display:none; }
 .pc-sub>div{display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;}
