@@ -68,7 +68,7 @@ input[id=btnnav]{opacity: 0;}
                   100%{top:3.5rem;opacity: 1; }
                             }
 
-  #nav>section:nth-child(1)>section:nth-child(3):hover .pc-sub{width:67.5vw;position: absolute;left:-52.5vw;}
+  #nav>section:nth-child(1)>section:nth-child(3):hover .pc-sub{width:15vw;position: absolute;left:0vw;}
   #nav>section:nth-child(1)>section:nth-child(3):hover .pc-sub a{display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-pack: justify;-ms-flex-pack: justify;justify-content: space-between;}
 
  #nav>section:nth-child(1)>section:hover>h1>button{-webkit-transform: rotate(180deg);-ms-transform: rotate(180deg);transform: rotate(180deg);-webkit-transition: 0.3s;-o-transition: 0.3s;transition: 0.3s;} 
